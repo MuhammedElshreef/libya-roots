@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+/* @plugin "tailwindcss-primeui"; */
+
+@theme {
+  --color-border: #e5e7eb;
+  --color-primary-text: #334155;
+  --color-titles-text: oklch(20.8% 0.042 265.755);
+  --color-muted-text: oklch(55.4% 0.046 257.417);
+  --color-accent: #008768;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "El Messiri", sans-serif;
+}

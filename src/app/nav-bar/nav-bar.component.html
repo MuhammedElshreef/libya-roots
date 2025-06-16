@@ -1,0 +1,60 @@
+<div class="w-full border-b border-border shadow-sm">
+  <div class="container mx-auto flex items-center justify-between py-4 px-4">
+    <a
+      href="/"
+      class="md:text-2xl text-xl font-bold text-accent hover:text-accent-hover transition-colors"
+    >
+      Libya Roots
+    </a>
+
+    <nav>
+      <ul class="flex gap-6 font-medium text-muted-text text-sm md:text-xl">
+        <li>
+          <a
+            [routerLink]="['/']"
+            routerLinkActive="text-accent border-b-2 border-accent pb-1"
+            class="hover:text-accent transition-colors"
+          >
+            الرئيسية
+          </a>
+        </li>
+        <li>
+          <a
+            [routerLink]="['/sites']"
+            routerLinkActive="text-accent border-b-2 border-accent pb-1"
+            class="hover:text-accent transition-colors"
+          >
+            المواقع
+          </a>
+        </li>
+        <li>
+          <a
+            [routerLink]="['/favorites']"
+            routerLinkActive="text-accent border-b-2 border-accent pb-1"
+            class="hover:text-accent transition-colors"
+          >
+            المفضلة
+          </a>
+        </li>
+        <li>
+          <a
+            [routerLink]="['/about']"
+            routerLinkActive="text-accent border-b-2 border-accent pb-1"
+            class="hover:text-accent transition-colors"
+          >
+            حول
+          </a>
+        </li>
+        <li>
+          <a
+            [routerLink]="['/contact']"
+            routerLinkActive="text-accent border-b-2 border-accent pb-1"
+            class="hover:text-accent transition-colors"
+          >
+            تواصل
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

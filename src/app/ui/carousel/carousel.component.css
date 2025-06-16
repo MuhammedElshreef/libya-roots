@@ -1,0 +1,15 @@
+.carousel-track {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  transition: scroll-left 0.2s ease;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-track.dragging {
+  scroll-behavior: auto !important;
+  cursor: grabbing;
+}
