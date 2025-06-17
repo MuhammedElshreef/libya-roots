@@ -18,36 +18,58 @@
 
       <!-- Filter -->
       <div class="flex items-center flex-wrap gap-2">
-        <span class="text-titles-text text-xl mr-2">الفئة:</span>
-        <select
-          class="border border-gray-300 rounded px-3 lg:w-96 sm:w-auto"
-          [value]="category"
-          (change)="onCategoryChangeEvent($event)"
-        >
- 
-          <option value="all">الكل</option>
-          <option value="historical">معالم أثرية</option>
-          <option value="resorts">منتجعات سياحية</option>
-          <option value="museums">متاحف</option>
-          <option value="parks">حدائق</option>
-          <option value="restaurants">مطاعم</option>
-          <option value="hotels">فنادق</option>
-          <option value="malls">مراكز تسوق</option>
-          <option value="beaches">شواطئ</option>
-          <option value="mosques">مساجد</option>
-          <!-- <option value="churches">كنيسة</option> -->
-          <!-- <option value="old-town">منطقة تاريخية</option> -->
-          <option value="cafes">مقاهي</option>
-          <option value="traditional-markets">اسواق تقليدية</option>
-        </select>
+        <div class="flex items-center gap-2">
+          <span class="text-titles-text text-xl mr-2">الفئة:</span>
+          <select
+            class="border border-gray-300 rounded px-3 lg:w-96 sm:w-auto"
+            [value]="category()"
+            (change)="onCategoryChangeEvent($event)"
+          >
+            <option value="all">الكل</option>
+            <option value="historical">معالم أثرية</option>
+            <option value="resorts">منتجعات سياحية</option>
+            <option value="museums">متاحف</option>
+            <option value="parks">حدائق</option>
+            <option value="restaurants">مطاعم</option>
+            <option value="hotels">فنادق</option>
+            <option value="malls">مراكز تسوق</option>
+            <option value="beaches">شواطئ</option>
+            <option value="mosques">مساجد</option>
+            <!-- <option value="churches">كنيسة</option> -->
+            <!-- <option value="old-town">منطقة تاريخية</option> -->
+            <option value="cafes">مقاهي</option>
+            <option value="traditionalMarkets">اسواق تقليدية</option>
+          </select>
+        </div>
+        <!-- Filter by city -->
+        <div class="flex items-center gap-2">
+          <span class="text-titles-text text-xl mr-2">المدينة:</span>
+          <select
+            class="border border-gray-300 rounded px-3 lg:w-96 sm:w-auto"
+            [value]="city()"
+            (change)="onCityChangeEvent($event)"
+          >
+            <option value="all">الكل</option>
+            <option value="طرابلس">طرابلس</option>
+            <option value="بنغازي">بنغازي</option>
+            <option value="مصراتة">مصراتة</option>
+            <option value="صبراتة">صبراتة</option>
+            <option value="سرت">سرت</option>
+            <option value="زليتن">زليتن</option>
+            <option value="الخمس">الخمس</option>
+            <option value="درنه">درنة</option>
+            <option value="طبرق">طبرق</option>
+            <option value="غات">غات</option>
+          </select>
+        </div>
       </div>
     </div>
 
     <div
       class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
     >
-      @for (item of [].constructor(8); track $index) {
-      <app-card />
+      @for (item of filteredItems(); track $index) {
+      <app-card [item]="item" />
       }
     </div>
   </div>

@@ -100,7 +100,7 @@ export class CarouselComponent implements AfterViewInit {
   }
 
   startDrag(event: TouchEvent | MouseEvent): void {
-    if (!(event instanceof TouchEvent)) return; // فقط على اللمس
+    if (!(event instanceof TouchEvent)) return;
 
     this.isDragging = true;
     this.startX = this.getPageX(event);
@@ -139,7 +139,6 @@ export class CarouselComponent implements AfterViewInit {
     this.scrollContainer.nativeElement.classList.remove('dragging');
 
     if (this.dragDistance < 5) {
-      // نقرة، دع الرابط يعمل
       return;
     }
 

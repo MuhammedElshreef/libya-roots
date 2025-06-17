@@ -13,4 +13,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/sites/sites.component').then((m) => m.SitesComponent),
   },
+  {
+    path: 'sites/:id',
+    loadComponent: () =>
+      import('./pages/sites/site-details/site-details.component').then(
+        (m) => m.SiteDetailsComponent
+      ),
+  },
 ];

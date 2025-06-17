@@ -1,5 +1,4 @@
 <div class="carousel-wrapper overflow-hidden relative">
-  <!-- Scrollable Track -->
   <div
     #scrollContainer
     class="carousel-track flex gap-4 overflow-x-auto scroll-smooth"
@@ -15,10 +14,12 @@
     <div
       class="shrink-0 h-72 sm:h-80 w-[85%] sm:w-[calc(100%/3.5)] rounded-xl bg-cover bg-center text-white relative overflow-hidden hover:scale-105 transition-transform duration-300"
     >
+      <!-- scroll top to the page when navigate -->
       <a
         [routerLink]="['/sites']"
         [queryParams]="{ q: item.category }"
         class="block w-full h-full"
+        draggable="false"
       >
         <img
           [src]="item.image"
