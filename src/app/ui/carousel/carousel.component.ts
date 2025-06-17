@@ -1,10 +1,10 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
-import { title } from 'process';
 
 @Component({
   selector: 'app-carousel',
-  imports: [RouterLink],
+  imports: [RouterLink, MatIcon],
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css'],
   standalone: true,
@@ -83,37 +83,43 @@ export class CarouselComponent implements AfterViewInit {
   private isDragging = false;
   private startX = 0;
   private scrollStart = 0;
-
   private lastX = 0;
   private velocity = 0;
   private lastMoveTime = 0;
-
+  private dragDistance = 0;
   private animationFrame: number | null = null;
 
   ngAfterViewInit(): void {
     this.scrollContainer.nativeElement.addEventListener(
       'touchstart',
       () => {},
-      { passive: false }
+      {
+        passive: false,
+      }
     );
   }
 
-  startDrag(event: MouseEvent | TouchEvent): void {
+  startDrag(event: TouchEvent | MouseEvent): void {
+    if (!(event instanceof TouchEvent)) return; // فقط على اللمس
+
     this.isDragging = true;
     this.startX = this.getPageX(event);
     this.scrollStart = this.scrollContainer.nativeElement.scrollLeft;
     this.lastX = this.startX;
     this.lastMoveTime = performance.now();
+    this.dragDistance = 0;
 
     if (this.animationFrame) cancelAnimationFrame(this.animationFrame);
     this.scrollContainer.nativeElement.classList.add('dragging');
-    event.preventDefault();
   }
 
-  onDrag(event: MouseEvent | TouchEvent): void {
+  onDrag(event: TouchEvent | MouseEvent): void {
+    if (!(event instanceof TouchEvent)) return;
     if (!this.isDragging) return;
+
     const currentX = this.getPageX(event);
     const delta = currentX - this.startX;
+    this.dragDistance = Math.abs(delta);
 
     const now = performance.now();
     const deltaTime = now - this.lastMoveTime;
@@ -131,7 +137,14 @@ export class CarouselComponent implements AfterViewInit {
     if (!this.isDragging) return;
     this.isDragging = false;
     this.scrollContainer.nativeElement.classList.remove('dragging');
-    this.applyMomentum(this.velocity * 100); // scaled velocity
+
+    if (this.dragDistance < 5) {
+      // نقرة، دع الرابط يعمل
+      return;
+    }
+
+    this.applyMomentum(this.velocity * 100);
+    this.dragDistance = 0;
   }
 
   private applyMomentum(initialVelocity: number) {
@@ -153,9 +166,29 @@ export class CarouselComponent implements AfterViewInit {
     step();
   }
 
-  private getPageX(event: MouseEvent | TouchEvent): number {
+  private getPageX(event: TouchEvent | MouseEvent): number {
     return event instanceof TouchEvent
       ? event.touches[0]?.pageX ?? 0
       : event.pageX;
+  }
+
+  scrollLeft(): void {
+    const el = this.scrollContainer.nativeElement;
+    el.scrollBy({ left: -el.offsetWidth, behavior: 'smooth' });
+  }
+
+  scrollRight(): void {
+    const el = this.scrollContainer.nativeElement;
+    el.scrollBy({ left: el.offsetWidth, behavior: 'smooth' });
+  }
+
+  get totalPages(): number {
+    const container = this.scrollContainer.nativeElement;
+    return Math.ceil(container.scrollWidth / container.offsetWidth);
+  }
+
+  getCurrentPage(): number {
+    const container = this.scrollContainer.nativeElement;
+    return Math.floor(container.scrollLeft / container.offsetWidth) + 1;
   }
 }
