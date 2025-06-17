@@ -8,4 +8,9 @@ export const routes: Routes = [
         (m) => m.HomePageComponent
       ),
   },
+  {
+    path: 'sites',
+    loadComponent: () =>
+      import('./pages/sites/sites.component').then((m) => m.SitesComponent),
+  },
 ];

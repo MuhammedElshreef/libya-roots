@@ -14,20 +14,22 @@
     <div
       class="shrink-0 h-72 sm:h-80 w-[85%] sm:w-[calc(100%/3.5)] rounded-xl bg-cover bg-center text-white relative overflow-hidden hover:scale-105 transition-transform duration-300"
     >
-      <img
-        [src]="item.imageUrl"
-        alt=""
-        class="absolute inset-0 w-full h-full object-cover"
-      />
-      <div
-        class="absolute inset-0 bg-black/40 rounded-xl p-4 flex flex-col justify-end"
-      >
-        <span
-          class="bg-white/20 rounded-full px-2 py-1 text-sm w-fit mb-2 absolute top-4 left-2"
+      <a [routerLink]="['/sites']" [queryParams]="{ q: item.category }">
+        <img
+          [src]="item.image"
+          alt=""
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+        <div
+          class="absolute inset-0 bg-black/40 rounded-xl p-4 flex flex-col justify-end"
         >
-          <p>{{ item.category }}</p>
-        </span>
-      </div>
+          <span
+            class="bg-white/20 rounded-full px-2 py-1 text-sm w-fit mb-2 absolute top-4 left-2"
+          >
+            <p>{{ item.title }}</p>
+          </span>
+        </div>
+      </a>
     </div>
     }
   </div>

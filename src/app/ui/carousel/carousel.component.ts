@@ -1,7 +1,10 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { title } from 'process';
 
 @Component({
   selector: 'app-carousel',
+  imports: [RouterLink],
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css'],
   standalone: true,
@@ -11,34 +14,69 @@ export class CarouselComponent implements AfterViewInit {
 
   items = [
     {
-      title: 'مسجد الملك فيصل',
-      description: 'معلم أثري تاريخي في الرياض',
-      category: 'معلم أثري',
-      imageUrl: 'assets/mosque.webp',
+      title: 'معالم أثرية',
+      category: 'historical',
+      image: 'assets/cat-ancient.jpeg',
     },
     {
-      title: 'منتجع البحر الأحمر',
-      description: 'منتجع سياحي فاخر على ساحل البحر الأحمر',
-      category: 'منتجع سياحي',
-      imageUrl: 'assets/mosque.webp',
+      title: 'منتجعات سياحية',
+      category: 'resorts',
+      image: 'assets/cat-resort.jpg',
     },
     {
-      title: 'متحف الفن الحديث',
-      description: 'متحف يضم مجموعة من الأعمال الفنية المعاصرة',
-      category: 'متحف',
-      imageUrl: 'assets/mosque.webp',
+      title: 'متاحف',
+      category: 'museums',
+      image: 'assets/cat-museum.jpg',
     },
     {
-      title: 'حديقة الملك عبدالله',
-      description: 'حديقة عامة جميلة في وسط المدينة',
-      category: 'حديقة',
-      imageUrl: 'assets/mosque.webp',
+      title: 'حدائق',
+      category: 'parks',
+      image: 'assets/cat-park.png',
     },
     {
-      title: 'مطعم الأطباق الشرقية',
-      description: 'مطعم يقدم أشهى الأطباق الشرقية التقليدية',
-      category: 'مطعم',
-      imageUrl: 'assets/mosque.webp',
+      title: 'مطاعم',
+      category: 'restaurants',
+      image: 'assets/cat-restaurant.jpg',
+    },
+    {
+      title: 'فنادق',
+      category: 'hotels',
+      image: 'assets/cat-hotel1.jpeg',
+    },
+    {
+      title: 'مراكز تسوق',
+      category: 'malls',
+      image: 'assets/cat-mall.jpg',
+    },
+    {
+      title: 'شواطئ',
+      category: 'beaches',
+      image: 'assets/cat-beach.png',
+    },
+    {
+      title: 'مساجد',
+      category: 'mosques',
+      image: 'assets/mosque.webp',
+    },
+    // {
+    //   title: 'كنيسة',
+    //   category: 'church',
+    //   image: 'assets/cat-church.jpeg',
+    // },
+    // {
+    //   title: 'منطقة تاريخية',
+    //   category: 'old-town',
+    //   image: 'assets/cat-historical.jpeg',
+    // },
+    {
+      title: 'مقاهي',
+      category: 'cafes',
+      image: 'assets/cat-cafe1.png',
+    },
+    {
+      title: 'اسواق تقليدية',
+      category: 'traditional-markets',
+      image: 'assets/cat-traditionalmarket.jpg',
     },
   ];
 

@@ -1,0 +1,54 @@
+<div class="container mx-auto py-14">
+  <div class="px-4 flex flex-col">
+    <div
+      class="flex justify-between items-center mb-6 flex-col lg:flex-row gap-4"
+    >
+      <p>
+        <span class="text-2xl font-bold text-titles-text">{{
+          getTitle()
+        }}</span>
+        <br />
+        @if (getSubtitle()) {
+
+        <span class="text-lg text-muted-text">
+          {{ getSubtitle() }}
+        </span>
+        }
+      </p>
+
+      <!-- Filter -->
+      <div class="flex items-center flex-wrap gap-2">
+        <span class="text-titles-text text-xl mr-2">الفئة:</span>
+        <select
+          class="border border-gray-300 rounded px-3 lg:w-96 sm:w-auto"
+          [value]="category"
+          (change)="onCategoryChangeEvent($event)"
+        >
+ 
+          <option value="all">الكل</option>
+          <option value="historical">معالم أثرية</option>
+          <option value="resorts">منتجعات سياحية</option>
+          <option value="museums">متاحف</option>
+          <option value="parks">حدائق</option>
+          <option value="restaurants">مطاعم</option>
+          <option value="hotels">فنادق</option>
+          <option value="malls">مراكز تسوق</option>
+          <option value="beaches">شواطئ</option>
+          <option value="mosques">مساجد</option>
+          <!-- <option value="churches">كنيسة</option> -->
+          <!-- <option value="old-town">منطقة تاريخية</option> -->
+          <option value="cafes">مقاهي</option>
+          <option value="traditional-markets">اسواق تقليدية</option>
+        </select>
+      </div>
+    </div>
+
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+    >
+      @for (item of [].constructor(8); track $index) {
+      <app-card />
+      }
+    </div>
+  </div>
+</div>
