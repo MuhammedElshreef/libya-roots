@@ -16,7 +16,7 @@
     >
       <!-- scroll top to the page when navigate -->
       <a
-        [routerLink]="['/sites']"
+        [routerLink]="['/places']"
         [queryParams]="{ q: item.category }"
         class="block w-full h-full"
         draggable="false"
@@ -24,7 +24,7 @@
         <img
           [src]="item.image"
           alt=""
-          class="absolute inset-0 w-full h-full object-cover"
+          class="absolute inset-0 w-full h-full object-cover object-top"
         />
         <div
           class="absolute inset-0 bg-black/40 rounded-xl p-4 flex flex-col justify-end"

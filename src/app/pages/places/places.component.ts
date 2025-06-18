@@ -5,12 +5,12 @@ import { Router } from '@angular/router';
 import { Category, Place } from '../../../types/model';
 
 @Component({
-  selector: 'app-sites',
+  selector: 'app-places',
   imports: [CardComponent],
-  templateUrl: './sites.component.html',
+  templateUrl: './places.component.html',
   styles: ``,
 })
-export class SitesComponent {
+export class PlacesComponent {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);

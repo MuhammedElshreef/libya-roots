@@ -14,7 +14,7 @@ export class CardComponent {
   item = model<Place>();
   private router = inject(Router);
   navigateToSite() {
-    this.router.navigate(['/sites', this.item()?.id]);
+    this.router.navigate(['/places', this.item()?.id]);
   }
 
   toggleFavorite(event: MouseEvent) {

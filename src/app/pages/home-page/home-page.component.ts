@@ -3,7 +3,7 @@ import { CardComponent } from '../../ui/card/site/card.component';
 import { RouterLink } from '@angular/router';
 import { CarouselComponent } from '../../ui/carousel/carousel.component';
 import { Category, Place } from '../../../types/model';
-import { SitesService } from '../sites.service';
+import { PlacesService } from '../places.service';
 
 @Component({
   imports: [RouterLink, CardComponent, CarouselComponent],
@@ -11,7 +11,7 @@ import { SitesService } from '../sites.service';
   styles: ``,
 })
 export class HomePageComponent {
-  private sitesSerice = inject(SitesService);
+  private PlaceService = inject(PlacesService);
   constructor() {}
   items = signal<Place[]>([
     {

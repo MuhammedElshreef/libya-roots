@@ -9,15 +9,15 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'sites',
+    path: 'places',
     loadComponent: () =>
-      import('./pages/sites/sites.component').then((m) => m.SitesComponent),
+      import('./pages/places/places.component').then((m) => m.PlacesComponent),
   },
   {
-    path: 'sites/:id',
+    path: 'places/:id',
     loadComponent: () =>
-      import('./pages/sites/site-details/site-details.component').then(
-        (m) => m.SiteDetailsComponent
+      import('./pages/places/place-details/place-details.component').then(
+        (m) => m.PlaceDetailsComponent
       ),
   },
 ];
