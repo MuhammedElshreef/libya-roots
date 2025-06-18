@@ -1,0 +1,27 @@
+<div class="container mx-auto py-14">
+  <div class="px-4 flex flex-col">
+    <div
+      class="flex justify-between items-center mb-6 flex-col lg:flex-row gap-4 text-center lg:text-right"
+    >
+      <p>
+        <span class="lg:text-2xl text-xl font-bold text-titles-text">
+          {{ getTitle() }}
+        </span>
+        <br />
+        @if (getSubtitle()) {
+        <span class="lg:text-lg text-muted-text">
+          {{ getSubtitle() }}
+        </span>
+        }
+      </p>
+    </div>
+
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+    >
+      @for (item of favoritePlaces(); track $index) {
+      <app-card [item]="item" />
+      }
+    </div>
+  </div>
+</div>

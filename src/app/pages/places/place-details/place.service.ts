@@ -6,7 +6,7 @@ import { Place } from '../../../../types/model';
   providedIn: 'root',
 })
 export class PlaceService {
-  private placesService = new PlacesService();
+  constructor(private placesService: PlacesService) {}
 
   getPlaceById(id: string): Place | undefined {
     return this.placesService.places.find((place) => place.id === id);

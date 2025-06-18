@@ -1,27 +1,30 @@
 <div class="container mx-auto py-14">
   <div class="px-4 flex flex-col">
     <div
-      class="flex justify-between items-center mb-6 flex-col lg:flex-row gap-4"
+      class="flex justify-between items-center mb-6 flex-col lg:flex-row gap-4 text-center lg:text-right"
     >
       <p>
-        <span class="text-2xl font-bold text-titles-text">{{
+        <span class="lg:text-2xl text-xl font-bold text-titles-text">{{
           getTitle()
         }}</span>
         <br />
         @if (getSubtitle()) {
 
-        <span class="text-lg text-muted-text">
+        <span class="lg:text-lg text-muted-text">
           {{ getSubtitle() }}
         </span>
         }
       </p>
 
-      <!-- Filter -->
-      <div class="flex items-center flex-wrap gap-2">
-        <div class="flex items-center gap-2">
-          <span class="text-titles-text text-xl mr-2">الفئة:</span>
+      <div
+        class="flex flex-col lg:flex-row lg:items-center flex-wrap gap-2 w-full lg:w-auto self-end"
+      >
+        <div
+          class="flex lg:items-center justify-between lg:gap-2 gap-0 w-full lg:w-auto"
+        >
+          <span class="text-titles-text lg:text-xl text-lg">الفئة:</span>
           <select
-            class="border border-gray-300 rounded px-3 lg:w-96 sm:w-auto"
+            class="border border-gray-300 rounded px-3 2xl:w-96 md:w-72 w-4/5"
             [value]="category()"
             (change)="onCategoryChangeEvent($event)"
           >
@@ -42,10 +45,10 @@
           </select>
         </div>
         <!-- Filter by city -->
-        <div class="flex items-center gap-2">
-          <span class="text-titles-text text-xl mr-2">المدينة:</span>
+        <div class="flex items-center justify-between lg:gap-2">
+          <span class="text-titles-text lg:text-xl text-lg">المدينة:</span>
           <select
-            class="border border-gray-300 rounded px-3 lg:w-96 sm:w-auto"
+            class="border border-gray-300 rounded px-3 2xl:w-96 md:w-72 w-4/5"
             [value]="city()"
             (change)="onCityChangeEvent($event)"
           >

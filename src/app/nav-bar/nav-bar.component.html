@@ -7,46 +7,126 @@
       جذور ليبيا
     </a>
 
-    <nav>
+    <!-- Desktop nav -->
+    <nav class="hidden md:block">
       <ul class="flex gap-6 font-medium text-muted-text text-sm md:text-xl">
         <li>
           <a
             [routerLink]="['/']"
-            [routerLinkActiveOptions]="{ exact: true }"
             routerLinkActive="text-accent border-b-2 border-accent pb-1"
+            [routerLinkActiveOptions]="{ exact: true }"
             class="hover:text-accent transition-colors"
+            >الرئيسية</a
           >
-            الرئيسية
-          </a>
         </li>
         <li>
           <a
             [routerLink]="['/places']"
             routerLinkActive="text-accent border-b-2 border-accent pb-1"
             class="hover:text-accent transition-colors"
+            >المواقع</a
           >
-            المواقع
-          </a>
         </li>
         <li>
           <a
             [routerLink]="['/favorites']"
             routerLinkActive="text-accent border-b-2 border-accent pb-1"
             class="hover:text-accent transition-colors"
+            >المفضلة</a
           >
-            المفضلة
-          </a>
         </li>
         <li>
           <a
             [routerLink]="['/about']"
             routerLinkActive="text-accent border-b-2 border-accent pb-1"
             class="hover:text-accent transition-colors"
+            >حول</a
           >
-            حول
-          </a>
         </li>
       </ul>
     </nav>
+
+    <button
+      (click)="toggleMenu()"
+      class="md:hidden text-2xl text-accent focus:outline-none"
+    >
+      @if(!isMenuOpen){
+      <span>&#9776;</span>
+      } @if(isMenuOpen){
+      <span>&times;</span>
+      }
+    </button>
   </div>
 </div>
+
+<!-- MOBILE SIDEBAR -->
+<div
+  class="fixed top-0 left-0 h-full w-2/3 max-w-xs bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out md:hidden py-6"
+  [ngClass]="{
+    'translate-x-0': isMenuOpen,
+    '-translate-x-full': !isMenuOpen
+  }"
+>
+  <div
+    class="w-full border-b-[1px] border-gray-300 mb-6 flex items-center justify-between px-4"
+  >
+    <a
+      [routerLink]="['/']"
+      class="md:text-2xl text-xl font-bold text-accent hover:text-accent-hover transition-colors"
+    >
+      جذور ليبيا
+    </a>
+    <button
+      (click)="toggleMenu()"
+      class="md:hidden text-4xl text-accent focus:outline-none"
+    >
+      @if(!isMenuOpen){
+      <span>&#9776;</span>
+      } @if(isMenuOpen){
+      <span>&times;</span>
+      }
+    </button>
+  </div>
+  <ul class="flex flex-col gap-4 font-medium text-muted-text text-base px-4">
+    <li>
+      <a
+        (click)="toggleMenu()"
+        [routerLink]="['/']"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="text-accent"
+        >الرئيسية</a
+      >
+    </li>
+    <li>
+      <a
+        (click)="toggleMenu()"
+        [routerLink]="['/places']"
+        routerLinkActive="text-accent"
+        >المواقع</a
+      >
+    </li>
+    <li>
+      <a
+        (click)="toggleMenu()"
+        [routerLink]="['/favorites']"
+        routerLinkActive="text-accent"
+        >المفضلة</a
+      >
+    </li>
+    <li>
+      <a
+        (click)="toggleMenu()"
+        [routerLink]="['/about']"
+        routerLinkActive="text-accent"
+        >حول</a
+      >
+    </li>
+  </ul>
+</div>
+
+@if(isMenuOpen) {
+<div
+  class="fixed inset-0 bg-black/60 z-40 md:hidden"
+  (click)="toggleMenu()"
+></div>
+}

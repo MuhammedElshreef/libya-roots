@@ -21,6 +21,5 @@ export class PlaceDetailsComponent implements OnInit {
     if (this.id()) {
       this.item.set(this.PlaceService.getPlaceById(this.id()!) ?? null);
     }
-    console.log(this.item());
   }
 }

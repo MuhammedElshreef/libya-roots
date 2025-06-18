@@ -1,27 +1,56 @@
-<div class="flex flex-col gap-4 container mx-auto px-4 py-6">
-  <h2 class="text-2xl font-bold text-titles-text mb-4">{{ item()?.name }}</h2>
-  <div class="flex gap-6">
-    <div>
-      <span class="text-xl">وصف المعلم :</span>
-      <p class="text-muted-text">
-        {{ item()?.description }}
-      </p>
+<div
+  class="flex flex-col lg:gap-4 gap-2 container mx-auto px-4 py-6 lg:py-24 relative"
+>
+  <h2 class="lg:text-2xl text-xl font-bold text-titles-text mb-4">
+    {{ item()?.name }}
+  </h2>
+  <div class="flex flex-col lg:flex-row gap-6">
+    <div
+      class="flex flex-col justify-between gap-4 w-full lg:w-2/3 flex-1 order-2 lg:order-1"
+    >
+      <div class="flex flex-col gap-2">
+        <span class="text-lg lg:text-xl">وصف المعلم :</span>
+        <p class="text-muted-text text-sm lg:text-base">
+          {{ item()?.description }}
+        </p>
+      </div>
+      <div class="mt-4 flex flex-col gap-4">
+        <div>
+          <h3 class="text-lg lg:text-xl font-semibold text-titles-text">
+            معلومات إضافية
+          </h3>
+          <ul
+            class="pl-5 mt-2 text-muted-text flex justify-between text-sm lg:text-base"
+          >
+            <li>فئة: {{ item()?.type || "غير محدد" }}</li>
+            <li>المدينة: {{ item()?.city || "غير محدد" }}</li>
+          </ul>
+        </div>
+        <div>
+          <a
+            target="_blank"
+            [href]="
+              'https://maps.google.com?q=' +
+              item()?.latitude +
+              ',' +
+              item()?.longitude
+            "
+          >
+            <button
+              class="px-8 py-4 bg-[#0d0d0d] text-white rounded-lg hover:bg-[#0d0d0d]/90 transition-colors hover:cursor-pointer w-full"
+            >
+              عرض على الخريطة
+            </button>
+          </a>
+        </div>
+      </div>
     </div>
-    <img
-      [src]="`assets/`+item()?.image"
-      alt="place image"
-      class="w-full max-h-[600px] h-auto object-contain"
-    />
-  </div>
-  <div class="mt-4">
-    <h3 class="text-xl font-semibold text-titles-text">المعلومات الإضافية</h3>
-    <ul class="pl-5 mt-2 text-muted-text">
-      <li>الفئة: {{ item()?.type || "غير محدد" }}</li>
-      <li>المدينة: {{ item()?.city || "غير محدد" }}</li>
-    </ul>
-  </div>
-  <div class="mt-4">
-    <h3 class="text-xl font-semibold text-titles-text">الموقع على الخريطة</h3>
-    <div class="h-64 w-full bg-gray-200 rounded-lg shadow-md"></div>
+    <div class="flex-1 order-1 lg:order-2">
+      <img
+        [src]="`assets/`+item()?.image"
+        alt="place image"
+        class="w-full lg:max-h-[400px] 2xl:max-h-[500px] h-auto rounded-lg"
+      />
+    </div>
   </div>
 </div>
