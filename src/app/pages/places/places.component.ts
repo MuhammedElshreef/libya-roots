@@ -1,34 +1,36 @@
 import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
 import { CardComponent } from '../../ui/card/site/card.component';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
-import { Category, Place } from '../../../types/model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Category, City } from '../../../types/model';
 import { PlacesService } from '../places.service';
 
 @Component({
   selector: 'app-places',
+  standalone: true,
   imports: [CardComponent],
   templateUrl: './places.component.html',
-  styles: ``,
 })
 export class PlacesComponent {
-  private PlacesService = inject(PlacesService);
-  private items = signal<Place[]>(this.PlacesService.places);
+  private placesService = inject(PlacesService);
+  private items = computed(() => this.placesService.places);
 
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
 
   category = signal<keyof typeof Category | 'all'>('all');
-  city = signal<string | null>('all');
+  city = signal<keyof typeof City | 'all'>('all');
 
   filteredItems = computed(() => {
     return this.items().filter((item) => {
       const matchesCategory =
         this.category() === 'all' ||
         item.type === Category[this.category() as keyof typeof Category];
+
       const matchesCity =
-        this.city() === 'all' || item.city === this.city() || !this.city();
+        this.city() === 'all' ||
+        item.city === City[this.city() as keyof typeof City];
+
       return matchesCategory && matchesCity;
     });
   });
@@ -57,24 +59,38 @@ export class PlacesComponent {
     this.onCategoryChange(value);
   }
 
+  onCityChangeEvent(event: Event): void {
+    const value = (event.target as HTMLSelectElement).value as
+      | keyof typeof City
+      | 'all';
+    this.city.set(value);
+  }
+
   getTitle(): string {
-    if (this.category() === 'all') return 'إكتشف أهم المواقع';
-    return `إكتشف أهم ${this.getCategoryLabel(this.category())} في ليبيا`;
+    const cat = this.category();
+    const city = this.city();
+
+    const categoryLabel =
+      cat === 'all' ? 'المواقع' : this.getCategoryLabel(cat);
+    const cityLabel = city === 'all' ? City.all : this.getCityLabel(city);
+
+    return `إكتشف أهم ${categoryLabel} في ${cityLabel}`;
   }
 
   getSubtitle(): string | null {
+    const city = this.city();
     return this.category() === 'all'
-      ? 'إكتشف أهم المواقع السياحية في ليبيا، من الآثار القديمة إلى المطاعم.'
+      ? `إكتشف أهم المواقع السياحية في ${this.getCityLabel(
+          city
+        )}، من الآثار القديمة إلى المطاعم.`
       : null;
   }
 
-  getCategoryLabel(key: keyof typeof Category | 'all'): string {
-    if (key === 'all') return 'كل الفئات';
+  getCategoryLabel(key: keyof typeof Category): string {
     return Category[key];
   }
 
-  onCityChangeEvent(event: Event): void {
-    const value = (event.target as HTMLSelectElement).value;
-    this.city.set(value || null);
+  getCityLabel(key: keyof typeof City): string {
+    return City[key];
   }
 }

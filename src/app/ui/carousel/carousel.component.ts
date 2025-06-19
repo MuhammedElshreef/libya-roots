@@ -16,47 +16,47 @@ export class CarouselComponent implements AfterViewInit {
     {
       title: 'معالم أثرية',
       category: 'historical',
-      image: 'assets/cat-ancient.jpeg',
+      image: 'assets/categories/cat-ancient.jpeg',
     },
     {
       title: 'منتجعات سياحية',
       category: 'resorts',
-      image: 'assets/cat-resort.jpg',
+      image: 'assets/categories/cat-resort.jpg',
     },
     {
       title: 'متاحف',
       category: 'museums',
-      image: 'assets/cat-museum.jpg',
+      image: 'assets/categories/cat-museum.jpg',
     },
     {
       title: 'حدائق',
       category: 'parks',
-      image: 'assets/cat-park.png',
+      image: 'assets/categories/cat-park.png',
     },
     {
       title: 'مطاعم',
       category: 'restaurants',
-      image: 'assets/cat-restaurant.jpg',
+      image: 'assets/categories/cat-restaurant.jpg',
     },
     {
       title: 'فنادق',
       category: 'hotels',
-      image: 'assets/cat-hotel1.jpeg',
+      image: 'assets/categories/cat-hotel1.jpeg',
     },
     {
       title: 'مراكز تسوق',
       category: 'malls',
-      image: 'assets/cat-mall.jpg',
+      image: 'assets/categories/cat-mall.jpg',
     },
     {
       title: 'شواطئ',
       category: 'beaches',
-      image: 'assets/cat-beach.png',
+      image: 'assets/categories/cat-beach.png',
     },
     {
       title: 'مساجد',
       category: 'mosques',
-      image: 'assets/mosque.webp',
+      image: 'assets/categories/cat-mosques.webp',
     },
     // {
     //   title: 'كنيسة',
@@ -71,12 +71,12 @@ export class CarouselComponent implements AfterViewInit {
     {
       title: 'مقاهي',
       category: 'cafes',
-      image: 'assets/cat-cafe1.png',
+      image: 'assets/categories/cat-cafe1.png',
     },
     {
       title: 'اسواق تقليدية',
       category: 'traditional-markets',
-      image: 'assets/cat-traditionalmarket.jpg',
+      image: 'assets/categories/cat-traditionalmarket.jpg',
     },
   ];
 

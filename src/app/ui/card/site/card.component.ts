@@ -1,4 +1,9 @@
-import { Component, inject, model } from '@angular/core';
+import {
+  Component,
+  Input,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { Place } from '../../../../types/model';
@@ -7,24 +12,23 @@ import { PlacesService } from '../../../pages/places.service';
 
 @Component({
   selector: 'app-card',
+  standalone: true,
   imports: [MatIconModule, SlicePipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './card.component.html',
-  styles: ``,
 })
 export class CardComponent {
-  item = model<Place>();
+  @Input({ required: true }) item!: Place;
+
   private router = inject(Router);
   private placesService = inject(PlacesService);
 
   navigateToSite() {
-    this.router.navigate(['/places', this.item()?.id]);
+    this.router.navigate(['/places', this.item.id]);
   }
 
   toggleFavorite(event: MouseEvent) {
     event.stopPropagation();
-    const place = this.item();
-    if (!place) return;
-
-    this.placesService.toggleFavorite(place.id);
+    this.placesService.toggleFavorite(this.item.id);
   }
 }

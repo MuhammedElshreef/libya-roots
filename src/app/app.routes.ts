@@ -27,4 +27,22 @@ export const routes: Routes = [
         (m) => m.FavoritesPageComponent
       ),
   },
+  {
+    path: 'about',
+    loadComponent: () =>
+      import('./pages/about-page/about-page.component').then(
+        (m) => m.AboutPageComponent
+      ),
+  },
+  {
+    path: 'faq',
+    loadComponent: () =>
+      import('./pages/faq-page/faq-page.component').then(
+        (m) => m.FaqPageComponent
+      ),
+  },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];

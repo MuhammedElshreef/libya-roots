@@ -1,4 +1,4 @@
-<div class="container mx-auto py-14">
+<div class="container mx-auto py-14 2xl:min-h-[calc(80vh-56px)]">
   <div class="px-4 flex flex-col">
     <div
       class="flex justify-between items-center mb-6 flex-col lg:flex-row gap-4 text-center lg:text-right"
@@ -9,7 +9,6 @@
         }}</span>
         <br />
         @if (getSubtitle()) {
-
         <span class="lg:text-lg text-muted-text">
           {{ getSubtitle() }}
         </span>
@@ -53,16 +52,16 @@
             (change)="onCityChangeEvent($event)"
           >
             <option value="all">الكل</option>
-            <option value="طرابلس">طرابلس</option>
-            <option value="بنغازي">بنغازي</option>
-            <option value="مصراتة">مصراتة</option>
-            <option value="صبراتة">صبراتة</option>
-            <option value="سرت">سرت</option>
-            <option value="زليتن">زليتن</option>
-            <option value="الخمس">الخمس</option>
-            <option value="درنه">درنة</option>
-            <option value="طبرق">طبرق</option>
-            <option value="غات">غات</option>
+            <option value="tripoli">طرابلس</option>
+            <option value="benghazi">بنغازي</option>
+            <option value="misrata">مصراتة</option>
+            <option value="sabratha">صبراتة</option>
+            <option value="sirte">سرت</option>
+            <option value="zliten">زليتن</option>
+            <option value="khoms">الخمس</option>
+            <option value="derna">درنة</option>
+            <option value="tobruk">طبرق</option>
+            <option value="ghat">غات</option>
           </select>
         </div>
       </div>

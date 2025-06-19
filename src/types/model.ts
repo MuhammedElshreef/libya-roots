@@ -12,7 +12,19 @@ export enum Category {
   traditionalMarkets = 'الأسواق التقليدية',
   all = 'كل الفئات',
 }
-
+export enum City {
+  tripoli = 'طرابلس',
+  benghazi = 'بنغازي',
+  misrata = 'مصراتة',
+  sabratha = 'صبراتة',
+  sirte = 'سرت',
+  zliten = 'زليتن',
+  khoms = 'الخمس',
+  derna = 'درنة',
+  tobruk = 'طبرق',
+  ghat = 'غات',
+  all = 'ليبيا',
+}
 export type Place = {
   id: string;
   isFavorite: boolean;

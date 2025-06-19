@@ -1,16 +1,26 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import {
+  computed,
+  Inject,
+  Injectable,
+  PLATFORM_ID,
+  signal,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import places from '../../places.json';
 import { Category, Place } from '../../types/model';
-import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlacesService {
-  private _places: Place[] = [];
+  private readonly _places = signal<Place[]>([]);
   private initialized = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.init(); // ✅ Initialize on client eagerly
+    }
+  }
 
   private readonly categoryMap: Record<string, Category> = {
     'معلم أثري': Category.historical,
@@ -26,43 +36,37 @@ export class PlacesService {
     'سوق تقليدي': Category.traditionalMarkets,
   };
 
-  init(): void {
-    if (!this.initialized && isPlatformBrowser(this.platformId)) {
+  private init(): void {
+    if (!this.initialized) {
       const favorites = this.loadFavorites();
-      this._places = places.map((place) => ({
+      const loadedPlaces = places.map((place) => ({
         ...place,
         type: this.mapToCategory(place.type),
         isFavorite: favorites.includes(place.id),
       }));
+      this._places.set(loadedPlaces);
       this.initialized = true;
     }
   }
 
   get places(): Place[] {
-    if (!this.initialized) {
-      // fallback if init wasn't called explicitly, do a minimal init on first access in browser
-      if (isPlatformBrowser(this.platformId)) {
-        this.init();
-      } else {
-        // If server, just return empty array or static data without favorites
-        this._places = places.map((place) => ({
-          ...place,
-          type: this.mapToCategory(place.type),
-          isFavorite: false,
-        }));
-        this.initialized = true;
-      }
-    }
-    return this._places;
+    return this._places(); // ✅ No more lazy init here
   }
 
+  readonly favoritePlaces = computed(() =>
+    this._places().filter((place) => place.isFavorite)
+  );
+
   toggleFavorite(id: string): void {
-    const place = this._places.find((p) => p.id === id);
-    if (!place) return;
+    const updated = this._places().map((p) =>
+      p.id === id ? { ...p, isFavorite: !p.isFavorite } : p
+    );
+    this._places.set(updated);
 
-    place.isFavorite = !place.isFavorite;
-
-    this.updateFavoritesLoaclStorage(place.id, place.isFavorite);
+    const changed = updated.find((p) => p.id === id);
+    if (changed) {
+      this.updateFavoritesLocalStorage(id, changed.isFavorite);
+    }
   }
 
   private loadFavorites(): string[] {
@@ -79,14 +83,13 @@ export class PlacesService {
     return [];
   }
 
-  private updateFavoritesLoaclStorage(
+  private updateFavoritesLocalStorage(
     placeId: string,
     isFavorite: boolean
   ): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
     const currentFavorites = this.loadFavorites();
-
     let updatedFavorites: string[];
 
     if (isFavorite) {
