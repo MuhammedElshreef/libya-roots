@@ -10,6 +10,7 @@ export enum Category {
   mosques = 'المساجد',
   cafes = 'المقاهي',
   traditionalMarkets = 'الأسواق التقليدية',
+  naturalview = 'مناظر طبيعية',
   all = 'كل الفئات',
 }
 export enum City {
