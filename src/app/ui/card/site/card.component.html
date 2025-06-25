@@ -2,11 +2,11 @@
   class="w-full max-w-sm rounded-lg shadow-lg overflow-hidden border border-border flex flex-col group hover:cursor-pointer"
 >
   <div class="block" (click)="navigateToSite()">
-    <div class="relative">
+    <div class="relative overflow-hidden">
       <img
         [src]="'assets/places/' + item.image"
         alt="صورة المكان"
-        class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+        class="object-cover w-full h-48 group-hover:scale-105 transition-transform duration-300"
       />
       <button
         (click)="toggleFavorite($event)"

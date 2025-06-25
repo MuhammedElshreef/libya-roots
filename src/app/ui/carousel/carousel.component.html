@@ -12,7 +12,7 @@
   >
     @for (item of items; track $index) {
     <div
-      class="shrink-0 h-72 sm:h-80 w-[85%] sm:w-[calc(100%/3.5)] rounded-xl bg-cover bg-center text-white relative overflow-hidden hover:scale-105 transition-transform duration-300"
+      class="shrink-0 h-72 sm:h-80 w-[85%] sm:w-[calc(100%/3.5)] rounded-xl bg-cover bg-center text-white relative overflow-hidden group"
     >
       <!-- scroll top to the page when navigate -->
       <a
@@ -24,7 +24,7 @@
         <img
           [src]="item.image"
           alt=""
-          class="absolute inset-0 w-full h-full object-cover object-top"
+          class="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
         />
         <div
           class="absolute inset-0 bg-black/40 rounded-xl p-4 flex flex-col justify-end"

@@ -1,6 +1,5 @@
 export enum Category {
   historical = 'المعالم الأثرية',
-  resorts = 'المنتجعات السياحية',
   museums = 'المتاحف',
   parks = 'الحدائق',
   restaurants = 'المطاعم',
@@ -11,6 +10,7 @@ export enum Category {
   cafes = 'المقاهي',
   traditionalMarkets = 'الأسواق التقليدية',
   naturalview = 'مناظر طبيعية',
+  resorts = 'المنتجعات السياحية ',
   all = 'كل الفئات',
 }
 export enum City {
