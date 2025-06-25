@@ -52,17 +52,9 @@
             [value]="city()"
             (change)="onCityChangeEvent($event)"
           >
-            <option value="all">الكل</option>
-            <option value="tripoli">طرابلس</option>
-            <option value="benghazi">بنغازي</option>
-            <option value="misrata">مصراتة</option>
-            <option value="sabratha">صبراتة</option>
-            <option value="sirte">سرت</option>
-            <option value="zliten">زليتن</option>
-            <option value="khoms">الخمس</option>
-            <option value="derna">درنة</option>
-            <option value="tobruk">طبرق</option>
-            <option value="ghat">غات</option>
+            @for (city of cities(); track city.value) {
+            <option [value]="city.value">{{ city.label }}</option>
+            }
           </select>
         </div>
       </div>

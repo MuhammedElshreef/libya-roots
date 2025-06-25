@@ -41,7 +41,7 @@ export class PlacesService {
       const favorites = this.loadFavorites();
       const loadedPlaces = places.map((place) => ({
         ...place,
-        type: this.mapToCategory(place.type),
+        type: this.mapToCategory(place.type ?? 'all'),
         isFavorite: favorites.includes(place.id),
       }));
       this._places.set(loadedPlaces);

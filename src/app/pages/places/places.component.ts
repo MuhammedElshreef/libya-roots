@@ -21,6 +21,25 @@ export class PlacesComponent {
   category = signal<keyof typeof Category | 'all'>('all');
   city = signal<keyof typeof City | 'all'>('all');
 
+  cities = signal([
+    { value: 'all', label: 'الكل' },
+    { value: 'tripoli', label: 'طرابلس' },
+    { value: 'misrata', label: 'مصراتة' },
+    { value: 'zliten', label: 'زليتن' },
+    { value: 'sirte', label: 'سرت' },
+    { value: 'baniWalid', label: 'بني وليد' },
+    { value: 'tarhuna', label: 'ترهونة' },
+    { value: 'alKhums', label: 'الخمس' },
+    { value: 'sabratha', label: 'صبراتة' },
+    { value: 'tajoura', label: 'تاجوراء' },
+    { value: 'alQarabulli', label: 'القره بوللي' },
+    { value: 'wadiWishka', label: 'الوشكه' },
+    { value: 'waddan', label: 'ودان' },
+    { value: 'sokna', label: 'سوكنة' },
+    { value: 'zella', label: 'زله' },
+    { value: 'hun', label: 'هون' },
+  ]);
+
   filteredItems = computed(() => {
     return this.items().filter((item) => {
       const matchesCategory =

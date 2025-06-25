@@ -1,5 +1,9 @@
+// edit المعالم الاثرية
+// <option value="المعالم البارزة">معالم بارزة</option>
+
 export enum Category {
   historical = 'المعالم الأثرية',
+  landmarks = 'المعالم البارزة',
   museums = 'المتاحف',
   parks = 'الحدائق',
   restaurants = 'المطاعم',
@@ -10,20 +14,27 @@ export enum Category {
   cafes = 'المقاهي',
   traditionalMarkets = 'الأسواق التقليدية',
   naturalview = 'مناظر طبيعية',
-  resorts = 'المنتجعات السياحية ',
+  resorts = 'المنتجعات السياحية',
+  historicalPlaces = 'الأماكن التاريخية',
   all = 'كل الفئات',
 }
+
 export enum City {
   tripoli = 'طرابلس',
-  benghazi = 'بنغازي',
   misrata = 'مصراتة',
-  sabratha = 'صبراتة',
-  sirte = 'سرت',
   zliten = 'زليتن',
-  khoms = 'الخمس',
-  derna = 'درنة',
-  tobruk = 'طبرق',
-  ghat = 'غات',
+  sirte = 'سرت',
+  baniWalid = 'بني وليد',
+  tarhuna = 'ترهونة',
+  alKhums = 'الخمس',
+  sabratha = 'صبراتة',
+  tajoura = 'تاجوراء',
+  alQarabulli = 'القره بوللي',
+  wadiWishka = 'الوشكه',
+  waddan = 'ودان',
+  sokna = 'سوكنة',
+  zella = 'زله',
+  hun = 'هون',
   all = 'ليبيا',
 }
 export type Place = {
