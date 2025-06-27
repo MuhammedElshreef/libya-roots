@@ -62,29 +62,6 @@ export class PlacesComponent {
     { value: 'sariyr', label: 'سرير' },
   ]);
 
-  // <select
-  //       class="border border-gray-300 rounded px-3 2xl:w-96 md:w-72 w-4/5"
-  //       [value]="category()"
-  //       (change)="onCategoryChangeEvent($event)"
-  //     >
-  //       <option value="all">الكل</option>
-  //       <option value="historical">معالم أثرية</option>
-  //       <option value="naturalview">مناظر طبيعية</option>
-  //       <option value="historicalPlaces">الأماكن التاريخية</option>
-  //       <option value="landmarks">المعالم البارزة</option>
-  //       <option value="beaches">شواطئ</option>
-  //       <option value="parks">حدائق</option>
-  //       <option value="hotels">فنادق</option>
-  //       <option value="resorts">منتجعات سياحية</option>
-  //       <option value="mosques">مساجد</option>
-  //       <!-- <option value="churches">كنيسة</option> -->
-  //       <option value="malls">مراكز تسوق</option>
-  //       <option value="traditionalMarkets">اسواق تقليدية</option>
-  //       <option value="restaurants">مطاعم</option>
-  //       <option value="museums">متاحف</option>
-  //       <option value="cafes">مقاهي</option>
-  //       <!-- <option value="old-town">منطقة تاريخية</option> -->
-  //     </select>
   categories = signal([
     { value: 'all', label: 'الكل' },
     { value: 'historical', label: 'معالم أثرية' },
@@ -120,7 +97,8 @@ export class PlacesComponent {
 
   ngOnInit(): void {
     const subscription = this.route.queryParams.subscribe((params) => {
-      this.category.set((params['q'] as keyof typeof Category) || 'all');
+      this.category.set((params['cat'] as keyof typeof Category) || 'all');
+      this.city.set((params['city'] as keyof typeof City) || 'all');
     });
 
     this.destroyRef.onDestroy(() => {
@@ -128,25 +106,24 @@ export class PlacesComponent {
     });
   }
 
-  onCategoryChange(newCategory: keyof typeof Category | 'all'): void {
-    this.router.navigate([], {
-      queryParams: { q: newCategory },
-      queryParamsHandling: 'merge',
-    });
-  }
-
   onCategoryChangeEvent(event: Event): void {
     const value = (event.target as HTMLSelectElement).value as
       | keyof typeof Category
       | 'all';
-    this.onCategoryChange(value);
+    this.router.navigate([], {
+      queryParams: { cat: value },
+      queryParamsHandling: 'merge',
+    });
   }
 
   onCityChangeEvent(event: Event): void {
     const value = (event.target as HTMLSelectElement).value as
       | keyof typeof City
       | 'all';
-    this.city.set(value);
+    this.router.navigate([], {
+      queryParams: { city: value },
+      queryParamsHandling: 'merge',
+    });
   }
 
   getTitle(): string {
