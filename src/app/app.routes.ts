@@ -42,6 +42,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'terms',
+    loadComponent: () =>
+      import('./pages/terms-page/terms-page.component').then(
+        (m) => m.TermsPage
+      ),
+  },
+  {
     path: '**',
     redirectTo: '',
   },
