@@ -44,6 +44,20 @@ export enum City {
   marzuq = 'مرزق',
   tsawa = 'تساوة',
   alawinat = 'العوينات',
+  tobruk = 'طبرق',
+  brega = 'برقة',
+  shahat = 'شحات',
+  apollonia = 'أبولونيا ( سوسة )',
+  derna = 'درنة',
+  benghazi = 'بنغازي',
+  albayda = 'البيضاء',
+  rebiana = 'ربيانة',
+  aljaghbub = 'الجغبوب',
+  alkufrah = 'الكفرة',
+  tazirbu = 'تازربو',
+  jalo = 'جالو',
+  awjila = 'أوجلة',
+  sariyr = 'سرير',
 }
 export type Place = {
   id: string;

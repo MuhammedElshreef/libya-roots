@@ -22,33 +22,88 @@ export class PlacesComponent {
   city = signal<keyof typeof City | 'all'>('all');
 
   cities = signal([
-  { value: 'all', label: 'الكل' },
-  { value: 'tripoli', label: 'طرابلس' },
-  { value: 'misrata', label: 'مصراتة' },
-  { value: 'zliten', label: 'زليتن' },
-  { value: 'sirte', label: 'سرت' },
-  { value: 'baniWalid', label: 'بني وليد' },
-  { value: 'tarhuna', label: 'ترهونة' },
-  { value: 'alKhums', label: 'الخمس' },
-  { value: 'sabratha', label: 'صبراتة' },
-  { value: 'tajoura', label: 'تاجوراء' },
-  { value: 'alQarabulli', label: 'القره بوللي' },
-  { value: 'wadiWishka', label: 'الوشكه' },
-  { value: 'waddan', label: 'ودان' },
-  { value: 'sokna', label: 'سوكنة' },
-  { value: 'zella', label: 'زله' },
-  { value: 'hun', label: 'هون' },
-  { value: 'sabha', label: 'سبها' },
-  { value: 'gat', label: 'غات' },
-  { value: 'ubari', label: 'أوباري' },
-  { value: 'germa', label: 'جرمة' },
-  { value: 'alqatrun', label: 'القطرون' },
-  { value: 'marzuq', label: 'مرزق' },
-  { value: 'tsawa', label: 'تساوة' },
-  { value: 'alawinat', label: 'العوينات' }
-]);
+    { value: 'all', label: 'الكل' },
+    { value: 'tripoli', label: 'طرابلس' },
+    { value: 'misrata', label: 'مصراتة' },
+    { value: 'zliten', label: 'زليتن' },
+    { value: 'sirte', label: 'سرت' },
+    { value: 'baniWalid', label: 'بني وليد' },
+    { value: 'tarhuna', label: 'ترهونة' },
+    { value: 'alKhums', label: 'الخمس' },
+    { value: 'sabratha', label: 'صبراتة' },
+    { value: 'tajoura', label: 'تاجوراء' },
+    { value: 'alQarabulli', label: 'القره بوللي' },
+    { value: 'wadiWishka', label: 'الوشكه' },
+    { value: 'waddan', label: 'ودان' },
+    { value: 'sokna', label: 'سوكنة' },
+    { value: 'zella', label: 'زله' },
+    { value: 'hun', label: 'هون' },
+    { value: 'sabha', label: 'سبها' },
+    { value: 'gat', label: 'غات' },
+    { value: 'ubari', label: 'أوباري' },
+    { value: 'germa', label: 'جرمة' },
+    { value: 'alqatrun', label: 'القطرون' },
+    { value: 'marzuq', label: 'مرزق' },
+    { value: 'tsawa', label: 'تساوة' },
+    { value: 'alawinat', label: 'العوينات' },
+    { value: 'tobruk', label: 'طبرق' },
+    { value: 'brega', label: 'برقة' },
+    { value: 'shahat', label: 'شحات' },
+    { value: 'apollonia', label: 'أبولونيا ( سوسة )' },
+    { value: 'derna', label: 'درنة' },
+    { value: 'benghazi', label: 'بنغازي' },
+    { value: 'albayda', label: 'البيضاء' },
+    { value: 'rebiana', label: 'ربيانة' },
+    { value: 'aljaghbub', label: 'الجغبوب' },
+    { value: 'alkufrah', label: 'الكفرة' },
+    { value: 'tazirbu', label: 'تازربو' },
+    { value: 'jalo', label: 'جالو' },
+    { value: 'awjila', label: 'أوجلة' },
+    { value: 'sariyr', label: 'سرير' },
+  ]);
 
-
+  // <select
+  //       class="border border-gray-300 rounded px-3 2xl:w-96 md:w-72 w-4/5"
+  //       [value]="category()"
+  //       (change)="onCategoryChangeEvent($event)"
+  //     >
+  //       <option value="all">الكل</option>
+  //       <option value="historical">معالم أثرية</option>
+  //       <option value="naturalview">مناظر طبيعية</option>
+  //       <option value="historicalPlaces">الأماكن التاريخية</option>
+  //       <option value="landmarks">المعالم البارزة</option>
+  //       <option value="beaches">شواطئ</option>
+  //       <option value="parks">حدائق</option>
+  //       <option value="hotels">فنادق</option>
+  //       <option value="resorts">منتجعات سياحية</option>
+  //       <option value="mosques">مساجد</option>
+  //       <!-- <option value="churches">كنيسة</option> -->
+  //       <option value="malls">مراكز تسوق</option>
+  //       <option value="traditionalMarkets">اسواق تقليدية</option>
+  //       <option value="restaurants">مطاعم</option>
+  //       <option value="museums">متاحف</option>
+  //       <option value="cafes">مقاهي</option>
+  //       <!-- <option value="old-town">منطقة تاريخية</option> -->
+  //     </select>
+  categories = signal([
+    { value: 'all', label: 'الكل' },
+    { value: 'historical', label: 'معالم أثرية' },
+    { value: 'naturalview', label: 'مناظر طبيعية' },
+    { value: 'historicalPlaces', label: 'الأماكن التاريخية' },
+    { value: 'landmarks', label: 'المعالم البارزة' },
+    { value: 'beaches', label: 'شواطئ' },
+    { value: 'parks', label: 'حدائق' },
+    { value: 'hotels', label: 'فنادق' },
+    { value: 'resorts', label: 'منتجعات سياحية' },
+    { value: 'mosques', label: 'مساجد' },
+    // { value: 'churches', label: 'كنيسة' },
+    { value: 'malls', label: 'مراكز تسوق' },
+    { value: 'traditionalMarkets', label: 'اسواق تقليدية' },
+    { value: 'restaurants', label: 'مطاعم' },
+    { value: 'museums', label: 'متاحف' },
+    { value: 'cafes', label: 'مقاهي' },
+    // { value: 'old-town', label: 'منطقة تاريخية' },
+  ]);
   filteredItems = computed(() => {
     return this.items().filter((item) => {
       const matchesCategory =
@@ -57,7 +112,7 @@ export class PlacesComponent {
 
       const matchesCity =
         this.city() === 'all' ||
-        item.city === City[this.city() as keyof typeof City];
+        item.city.trim() === City[this.city() as keyof typeof City];
 
       return matchesCategory && matchesCity;
     });
