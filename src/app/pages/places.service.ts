@@ -18,7 +18,7 @@ export class PlacesService {
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {
     if (isPlatformBrowser(this.platformId)) {
-      this.init(); // ✅ Initialize on client eagerly
+      this.init();
     }
   }
 
@@ -50,7 +50,7 @@ export class PlacesService {
   }
 
   get places(): Place[] {
-    return this._places(); // ✅ No more lazy init here
+    return this._places();
   }
 
   readonly favoritePlaces = computed(() =>

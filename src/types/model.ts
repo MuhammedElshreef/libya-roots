@@ -20,6 +20,7 @@ export enum Category {
 }
 
 export enum City {
+  all = 'ليبيا',
   tripoli = 'طرابلس',
   misrata = 'مصراتة',
   zliten = 'زليتن',
@@ -35,7 +36,14 @@ export enum City {
   sokna = 'سوكنة',
   zella = 'زله',
   hun = 'هون',
-  all = 'ليبيا',
+  sabha = 'سبها',
+  gat = 'غات',
+  ubari = 'أوباري',
+  germa = 'جرمة',
+  alqatrun = 'القطرون',
+  marzuq = 'مرزق',
+  tsawa = 'تساوة',
+  alawinat = 'العوينات',
 }
 export type Place = {
   id: string;

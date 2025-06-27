@@ -22,23 +22,32 @@ export class PlacesComponent {
   city = signal<keyof typeof City | 'all'>('all');
 
   cities = signal([
-    { value: 'all', label: 'الكل' },
-    { value: 'tripoli', label: 'طرابلس' },
-    { value: 'misrata', label: 'مصراتة' },
-    { value: 'zliten', label: 'زليتن' },
-    { value: 'sirte', label: 'سرت' },
-    { value: 'baniWalid', label: 'بني وليد' },
-    { value: 'tarhuna', label: 'ترهونة' },
-    { value: 'alKhums', label: 'الخمس' },
-    { value: 'sabratha', label: 'صبراتة' },
-    { value: 'tajoura', label: 'تاجوراء' },
-    { value: 'alQarabulli', label: 'القره بوللي' },
-    { value: 'wadiWishka', label: 'الوشكه' },
-    { value: 'waddan', label: 'ودان' },
-    { value: 'sokna', label: 'سوكنة' },
-    { value: 'zella', label: 'زله' },
-    { value: 'hun', label: 'هون' },
-  ]);
+  { value: 'all', label: 'الكل' },
+  { value: 'tripoli', label: 'طرابلس' },
+  { value: 'misrata', label: 'مصراتة' },
+  { value: 'zliten', label: 'زليتن' },
+  { value: 'sirte', label: 'سرت' },
+  { value: 'baniWalid', label: 'بني وليد' },
+  { value: 'tarhuna', label: 'ترهونة' },
+  { value: 'alKhums', label: 'الخمس' },
+  { value: 'sabratha', label: 'صبراتة' },
+  { value: 'tajoura', label: 'تاجوراء' },
+  { value: 'alQarabulli', label: 'القره بوللي' },
+  { value: 'wadiWishka', label: 'الوشكه' },
+  { value: 'waddan', label: 'ودان' },
+  { value: 'sokna', label: 'سوكنة' },
+  { value: 'zella', label: 'زله' },
+  { value: 'hun', label: 'هون' },
+  { value: 'sabha', label: 'سبها' },
+  { value: 'gat', label: 'غات' },
+  { value: 'ubari', label: 'أوباري' },
+  { value: 'germa', label: 'جرمة' },
+  { value: 'alqatrun', label: 'القطرون' },
+  { value: 'marzuq', label: 'مرزق' },
+  { value: 'tsawa', label: 'تساوة' },
+  { value: 'alawinat', label: 'العوينات' }
+]);
+
 
   filteredItems = computed(() => {
     return this.items().filter((item) => {
