@@ -88,39 +88,35 @@
     </button>
   </div>
   <ul class="flex flex-col gap-4 font-medium text-muted-text text-base px-4">
-    <li>
-      <a
-        (click)="toggleMenu()"
-        [routerLink]="['/']"
-        [routerLinkActiveOptions]="{ exact: true }"
-        routerLinkActive="text-accent"
-        >الرئيسية</a
-      >
-    </li>
-    <li>
-      <a
-        (click)="toggleMenu()"
-        [routerLink]="['/places']"
-        routerLinkActive="text-accent"
-        >الأماكن</a
-      >
-    </li>
-    <li>
-      <a
-        (click)="toggleMenu()"
-        [routerLink]="['/favorites']"
-        routerLinkActive="text-accent"
-        >المفضلة</a
-      >
-    </li>
-    <li>
-      <a
-        (click)="toggleMenu()"
-        [routerLink]="['/about']"
-        routerLinkActive="text-accent"
-        >حول</a
-      >
-    </li>
+    <a
+      (click)="toggleMenu()"
+      [routerLink]="['/']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLinkActive="text-accent"
+    >
+      <li>الرئيسية</li>
+    </a>
+    <a
+      (click)="toggleMenu()"
+      [routerLink]="['/places']"
+      routerLinkActive="text-accent"
+    >
+      <li>الأماكن</li>
+    </a>
+    <a
+      (click)="toggleMenu()"
+      [routerLink]="['/favorites']"
+      routerLinkActive="text-accent"
+    >
+      <li>المفضلة</li>
+    </a>
+    <a
+      (click)="toggleMenu()"
+      [routerLink]="['/about']"
+      routerLinkActive="text-accent"
+    >
+      <li>حول</li>
+    </a>
   </ul>
 </div>
 
