@@ -24,16 +24,20 @@ export class PlacesService {
 
   private readonly categoryMap: Record<string, Category> = {
     'معلم أثري': Category.historical,
-    مسجد: Category.mosques,
-    منتجع: Category.resorts,
+    'معلم بارز': Category.landmarks,
     متحف: Category.museums,
     حديقة: Category.parks,
     مطعم: Category.restaurants,
     فندق: Category.hotels,
     'مركز تسوق': Category.malls,
     شاطئ: Category.beaches,
+    مسجد: Category.mosques,
     مقهى: Category.cafes,
     'سوق تقليدي': Category.traditionalMarkets,
+    'منظر طبيعي': Category.naturalview,
+    منتجع: Category.resorts,
+    'مكان تاريخي': Category.historicalPlaces,
+    'كل الفئات': Category.all,
   };
 
   private init(): void {

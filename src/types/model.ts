@@ -1,6 +1,3 @@
-// edit المعالم الاثرية
-// <option value="المعالم البارزة">معالم بارزة</option>
-
 export enum Category {
   historical = 'المعالم الأثرية',
   landmarks = 'المعالم البارزة',
