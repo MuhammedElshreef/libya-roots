@@ -11,12 +11,8 @@ import { PlacesService } from '../places.service';
 })
 export class HomePageComponent {
   private placesService = inject(PlacesService);
-  // places = computed(() => {
-  //   const allPlaces = this.placesService.places;
-  //   return allPlaces.sort(() => 0.5 - Math.random()).slice(0, 8);
-  // });
-
   places = computed(() => {
-    return this.placesService.places.slice(0, 8);
+    const allPlaces = this.placesService.places;
+    return allPlaces.sort(() => 0.5 - Math.random()).slice(0, 8);
   });
 }
