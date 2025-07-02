@@ -35,7 +35,7 @@ export class PlacesService {
     مقهى: Category.cafes,
     'سوق تقليدي': Category.traditionalMarkets,
     'منظر طبيعي': Category.naturalview,
-    منتجع: Category.resorts,
+    'منتجع سياحي': Category.resorts,
     'مكان تاريخي': Category.historicalPlaces,
     'كل الفئات': Category.all,
   };
