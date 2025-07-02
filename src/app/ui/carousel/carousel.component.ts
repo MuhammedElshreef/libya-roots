@@ -154,16 +154,23 @@ export class CarouselComponent implements AfterViewInit {
   }
 
   private applyMomentum(initialVelocity: number) {
-    const friction = 0.95;
-    const stopThreshold = 0.05;
-    let velocity = initialVelocity;
+    const friction = 0.92;
+    const stopThreshold = 0.5;
+    let velocity = Math.max(Math.min(initialVelocity * 2.5, 120), -120); // 💨 Boosted flick effect
 
     const container = this.scrollContainer.nativeElement;
 
     const step = () => {
       if (Math.abs(velocity) < stopThreshold) return;
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      if (
+        (container.scrollLeft <= 0 && velocity < 0) ||
+        (container.scrollLeft >= maxScroll && velocity > 0)
+      ) {
+        return;
+      }
 
-      container.scrollLeft -= velocity;
+      container.scrollLeft += velocity;
       velocity *= friction;
 
       this.animationFrame = requestAnimationFrame(step);
@@ -171,7 +178,6 @@ export class CarouselComponent implements AfterViewInit {
 
     step();
   }
-
   private getPageX(event: TouchEvent | MouseEvent): number {
     return event instanceof TouchEvent
       ? event.touches[0]?.pageX ?? 0
