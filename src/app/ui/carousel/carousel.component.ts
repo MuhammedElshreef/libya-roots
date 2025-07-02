@@ -97,10 +97,15 @@ export class CarouselComponent implements AfterViewInit {
         passive: false,
       }
     );
+    this.scrollContainer.nativeElement.addEventListener('touchmove', () => {}, {
+      passive: false,
+    });
   }
 
   startDrag(event: TouchEvent | MouseEvent): void {
-    if (!(event instanceof TouchEvent)) return;
+    if (event instanceof TouchEvent) {
+      event.preventDefault();
+    }
 
     this.isDragging = true;
     this.startX = this.getPageX(event);
@@ -115,6 +120,8 @@ export class CarouselComponent implements AfterViewInit {
 
   onDrag(event: TouchEvent | MouseEvent): void {
     if (!(event instanceof TouchEvent)) return;
+
+    event.preventDefault();
     if (!this.isDragging) return;
 
     const currentX = this.getPageX(event);
