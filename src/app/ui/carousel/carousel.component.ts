@@ -153,25 +153,36 @@ export class CarouselComponent implements AfterViewInit {
     this.dragDistance = 0;
   }
 
+  // private applyMomentum(initialVelocity: number) {
+  //   const friction = 0.95;
+  //   const stopThreshold = 0.05;
+  //   let velocity = initialVelocity;
+
+  //   const container = this.scrollContainer.nativeElement;
+
+  //   const step = () => {
+  //     if (Math.abs(velocity) < stopThreshold) return;
+
+  //     container.scrollLeft -= velocity;
+  //     velocity *= friction;
+
+  //     this.animationFrame = requestAnimationFrame(step);
+  //   };
+
+  //   step();
+  // }
   private applyMomentum(initialVelocity: number) {
-    const friction = 0.92;
-    const stopThreshold = 0.5;
-    let velocity = Math.max(Math.min(initialVelocity * 2.5, 120), -120); // 💨 Boosted flick effect
+    const friction = 0.93; // 🧽 Less friction = longer momentum
+    const stopThreshold = 0.5; // ⛔ Stop when velocity is small
+    let velocity = Math.max(Math.min(initialVelocity * 2, 100), -100); // 💨 Boost velocity
 
     const container = this.scrollContainer.nativeElement;
 
     const step = () => {
       if (Math.abs(velocity) < stopThreshold) return;
-      const maxScroll = container.scrollWidth - container.clientWidth;
-      if (
-        (container.scrollLeft <= 0 && velocity < 0) ||
-        (container.scrollLeft >= maxScroll && velocity > 0)
-      ) {
-        return;
-      }
 
-      container.scrollLeft += velocity;
-      velocity *= friction;
+      container.scrollLeft += velocity; // ← Use += not -= for correct direction
+      velocity *= friction; // Gradually reduce speed
 
       this.animationFrame = requestAnimationFrame(step);
     };
