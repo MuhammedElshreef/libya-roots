@@ -103,10 +103,6 @@ export class CarouselComponent implements AfterViewInit {
   }
 
   startDrag(event: TouchEvent | MouseEvent): void {
-    if (event instanceof TouchEvent) {
-      event.preventDefault();
-    }
-
     this.isDragging = true;
     this.startX = this.getPageX(event);
     this.scrollStart = this.scrollContainer.nativeElement.scrollLeft;
@@ -119,9 +115,6 @@ export class CarouselComponent implements AfterViewInit {
   }
 
   onDrag(event: TouchEvent | MouseEvent): void {
-    if (!(event instanceof TouchEvent)) return;
-
-    event.preventDefault();
     if (!this.isDragging) return;
 
     const currentX = this.getPageX(event);
@@ -137,6 +130,10 @@ export class CarouselComponent implements AfterViewInit {
       this.lastMoveTime = now;
     }
 
+    if (event instanceof TouchEvent) {
+      event.preventDefault(); // ← only here, during actual dragging
+    }
+
     this.scrollContainer.nativeElement.scrollLeft = this.scrollStart - delta;
   }
 
@@ -149,28 +146,16 @@ export class CarouselComponent implements AfterViewInit {
       return;
     }
 
+    // Prevent click navigation if dragged
+    const links = this.scrollContainer.nativeElement.querySelectorAll('a');
+    links.forEach((link: HTMLAnchorElement) =>
+      link.addEventListener('click', (e) => e.preventDefault(), { once: true })
+    );
+
     this.applyMomentum(this.velocity * 100);
     this.dragDistance = 0;
   }
 
-  // private applyMomentum(initialVelocity: number) {
-  //   const friction = 0.95;
-  //   const stopThreshold = 0.05;
-  //   let velocity = initialVelocity;
-
-  //   const container = this.scrollContainer.nativeElement;
-
-  //   const step = () => {
-  //     if (Math.abs(velocity) < stopThreshold) return;
-
-  //     container.scrollLeft -= velocity;
-  //     velocity *= friction;
-
-  //     this.animationFrame = requestAnimationFrame(step);
-  //   };
-
-  //   step();
-  // }
   private applyMomentum(initialVelocity: number) {
     const friction = 0.93; // 🧽 Less friction = longer momentum
     const stopThreshold = 0.5; // ⛔ Stop when velocity is small
@@ -189,6 +174,24 @@ export class CarouselComponent implements AfterViewInit {
 
     step();
   }
+  // private applyMomentum(initialVelocity: number) {
+  //   const friction = 0.95;
+  //   const stopThreshold = 0.05;
+  //   let velocity = initialVelocity;
+
+  //   const container = this.scrollContainer.nativeElement;
+
+  //   const step = () => {
+  //     if (Math.abs(velocity) < stopThreshold) return;
+
+  //     container.scrollLeft -= velocity; // ← Use += not -= for correct direction
+  //     velocity *= friction; // Gradually reduce speed
+
+  //     this.animationFrame = requestAnimationFrame(step);
+  //   };
+
+  //   step();
+  // }
   private getPageX(event: TouchEvent | MouseEvent): number {
     return event instanceof TouchEvent
       ? event.touches[0]?.pageX ?? 0
