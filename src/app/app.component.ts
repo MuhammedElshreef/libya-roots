@@ -13,7 +13,7 @@ import { PLATFORM_ID } from '@angular/core';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  private router = inject (Router);
+  private router = inject(Router);
   private platformId = inject(PLATFORM_ID);
 
   constructor() {

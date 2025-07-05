@@ -1,13 +1,26 @@
 import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
+import {} from '@angular/core';
 import { CardComponent } from '../../ui/card/site/card.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category, City } from '../../../types/model';
 import { PlacesService } from '../places.service';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-places',
   standalone: true,
   imports: [CardComponent],
+  animations: [
+    trigger('fadeInUp', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(20px)' }),
+        animate(
+          '600ms ease-out',
+          style({ opacity: 1, transform: 'translateY(0)' })
+        ),
+      ]),
+    ]),
+  ],
   templateUrl: './places.component.html',
 })
 export class PlacesComponent {
