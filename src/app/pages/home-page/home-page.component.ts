@@ -14,4 +14,9 @@ import { PlacesService } from '../places.service';
 export class HomePageComponent {
   private placesService = inject(PlacesService);
   places = computed(() => this.placesService.places.slice(0, 8));
+  // random 8 places
+  // places = computed(() => {
+  //   const shuffled = this.placesService.places.sort(() => 0.5 - Math.random());
+  //   return shuffled.slice(0, 8);
+  // });
 }
