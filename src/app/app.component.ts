@@ -7,6 +7,8 @@ import { filter } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
 
+import { inject as vercInject } from '@vercel/analytics';
+
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, NavBarComponent, FooterComponent],
@@ -17,12 +19,14 @@ export class AppComponent {
   private platformId = inject(PLATFORM_ID);
 
   constructor() {
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        if (isPlatformBrowser(this.platformId)) {
+    if (isPlatformBrowser(this.platformId)) {
+      vercInject();
+
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd))
+        .subscribe(() => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      });
+        });
+    }
   }
 }
