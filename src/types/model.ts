@@ -26,6 +26,7 @@ export enum City {
   tarhuna = 'ترهونة',
   alKhums = 'الخمس',
   sabratha = 'صبراتة',
+  mizda = 'مزدة',
   tajoura = 'تاجوراء',
   alQarabulli = 'القره بوللي',
   wadiWishka = 'الوشكه',

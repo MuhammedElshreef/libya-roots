@@ -44,6 +44,7 @@ export class PlacesComponent {
     { value: 'tarhuna', label: 'ترهونة' },
     { value: 'alKhums', label: 'الخمس' },
     { value: 'sabratha', label: 'صبراتة' },
+    { vlaue: 'mizda', label: 'مزدة' },
     // { value: 'tajoura', label: 'تاجوراء' },
     { value: 'alQarabulli', label: 'القره بوللي' },
     { value: 'wadiWishka', label: 'الوشكه' },
